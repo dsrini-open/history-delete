@@ -1,0 +1,33 @@
+{
+  "manifest_version": 2,
+  "name": "__MSG_extensionName__",
+  "description": "__MSG_extensionDescription__",
+  "version": "1.0",
+  "author": "dsrini.open",
+  "homepage_url": "https://github.com/dsrini-open/manage-history",
+  "default_locale": "en",
+  "minimum_chrome_version": "50.0",
+  "permissions": [
+    "notifications",
+    "storage",
+    "history",
+    "tabs",
+    "<all_urls>"
+  ],
+  "content_security_policy": "default-src 'self'; style-src 'self' 'unsafe-inline';",
+  "browser_action": {
+    "default_icon": {
+      "32": "src/assets/icon-32.png",
+      "48": "src/assets/icon-48.png",
+      "64": "src/assets/icon-64.png"
+    }
+  },
+  "options_ui": {
+    "page": "src/settings/settings.html",
+    "chrome_style": false,
+    "open_in_tab": true
+  },
+  "background": {
+    "page": "src/background/background.html"
+  }
+}

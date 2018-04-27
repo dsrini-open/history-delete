@@ -1,0 +1,36 @@
+{
+  "manifest_version": 2,
+  "name": "__MSG_extensionName__",
+  "description": "__MSG_extensionDescription__",
+  "version": "1.0",
+  "author": "dsrini.open",
+  "developer": {
+    "name": "dsrini.open",
+    "url": "https://github.com/dsrini-open"
+  },
+  "homepage_url": "https://github.com/dsrini-open/history-delete",
+  "default_locale": "en",
+  "minimum_opera_version": "40.0",
+  "permissions": [
+    "notifications",
+    "storage",
+    "history",
+    "tabs",
+    "<all_urls>"
+  ],
+  "content_security_policy": "default-src 'self'; style-src 'self' 'unsafe-inline';",
+  "browser_action": {
+    "default_icon": {
+      "32": "src/assets/icon-32.png",
+      "48": "src/assets/icon-48.png",
+      "64": "src/assets/icon-64.png"
+    }
+  },
+  "options_ui": {
+    "page": "src/settings/settings.html",
+    "open_in_tab": true
+  },
+  "background": {
+    "page": "src/background/background.html"
+  }
+}

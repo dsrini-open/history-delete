@@ -1,0 +1,35 @@
+{
+  "whiteList": [],
+  "blackList": [],
+  "menuCfg": {
+    "options": [
+      "wl",
+      "bl",
+      "cw"
+    ],
+    "actions": [
+      "rhbInt"
+    ],
+    "cfg": {
+      "wl": [
+        "aw",
+        "rha"
+      ],
+      "bl": [
+        "ab",
+        "rhb"
+      ],
+      "cw": [
+        "rhc"
+      ]
+    }
+  },
+  "rhbInt": true,
+  "popupMenus": [
+    "aw",
+    "rha",
+    "ab",
+    "rhb",
+    "rhc"
+  ]
+}

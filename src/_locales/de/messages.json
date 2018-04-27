@@ -1,0 +1,152 @@
+{
+  "error_actionType": {
+    "description": "Error for unsupported actions",
+    "message": "Unsachgemäße Maßnahmen angefordert"
+  },
+  "error_pageType": {
+    "description": "Error for page type",
+    "message": "Der Seitentyp wird von der Erweiterung nicht unterstützt"
+  },
+  "extensionDescription": {
+    "description": "Description of the extension.",
+    "message": "Browserverlauf löschen."
+  },
+  "extensionName": {
+    "description": "Name of the extension.",
+    "message": "Verlauf löschen"
+  },
+  "notif_ab": {
+    "description": "Notify of complete action: Add to Blacklist",
+    "message": "Webseite erfolgreich zu Blacklist hinzugefügt."
+  },
+  "notif_aw": {
+    "description": "Notify of complete action: Add to Whitelist",
+    "message": "Website zu Whitelist erfolgreich hinzugefügt."
+  },
+  "notif_rb": {
+    "description": "Notify of complete action: Remove from Blacklist",
+    "message": "Webseite von Blacklist erfolgreich entfernt."
+  },
+  "notif_rha": {
+    "description": "Notify of complete action: Remove for all but whitelist",
+    "message": "Der Website-Verlauf wurde für alle bis auf die Whitelists entfernt."
+  },
+  "notif_rhb": {
+    "description": "Notify of complete action: Remove for all Blacklist",
+    "message": "Der Website-Verlauf für alle Blacklists wurde entfernt."
+  },
+  "notif_rhc": {
+    "description": "Notify of complete action: Remove for Current webstie",
+    "message": "Der aktuelle Website-Verlauf wurde erfolgreich entfernt."
+  },
+  "notif_rw": {
+    "description": "Notify of complete action: Remove from Whitelist",
+    "message": "Website von Whitelist erfolgreich entfernt."
+  },
+  "options_action_header": {
+    "description": "Header text for actions config",
+    "message": "Aktions konfigurationen"
+  },
+  "options_action_rhbInt": {
+    "description": "Option text for regular interval blacklist clearing",
+    "message": "Aktivieren Sie Clearing Blacklist beim Schließen des Fensters"
+  },
+  "options_btn_close": {
+    "description": "Close button text",
+    "message": "Stornieren"
+  },
+  "options_btn_save": {
+    "description": "Save button text",
+    "message": "Änderungen speichern"
+  },
+  "options_menu_bl": {
+    "description": "Blacklist config to enable",
+    "message": "Aktiviere Blacklist"
+  },
+  "options_menu_cw": {
+    "description": "Title for the config page",
+    "message": "Aktivieren Sie Verlauf für aktuelle Website entfernen"
+  },
+  "options_menu_header": {
+    "description": "What menu in options does in config page",
+    "message": "Menü konfigurationen"
+  },
+  "options_menu_wl": {
+    "description": "Whitelist config to enable",
+    "message": "Whitelist aktivieren"
+  },
+  "options_table_header1": {
+    "description": "Table header value for column 1",
+    "message": "Gastgeber"
+  },
+  "options_table_header2": {
+    "description": "Table header value for column 2",
+    "message": "Löschen"
+  },
+  "options_title_ext": {
+    "description": "Title for the config page",
+    "message": "Löschen der Verlaufskonfiguration"
+  },
+  "options_title_bl": {
+    "description": "Title for the blacklist table",
+    "message": "Blacklists"
+  },
+  "options_title_wl": {
+    "description": "Title for the whitelist table",
+    "message": "Whitelists"
+  },
+  "options_warn_removeEntry": {
+    "description": "Warning message to throw to the users",
+    "message": "Hosteintrag löschen?"
+  },
+  "options_warn_remove_bl": {
+    "description": "Warning message for removing blacklist option",
+    "message": "Löschen von Blacklist-Einträgen?"
+  },
+  "options_warn_remove_wl": {
+    "description": "Warning message for removing whitelist option",
+    "message": "Whitelist-Einträge löschen?"
+  },
+  "popup_ab": {
+    "description": "Blacklist a site to just remove black list history",
+    "message": "Zur Blacklist hinzufügen"
+  },
+  "popup_aw": {
+    "description": "White list a site to not remove history",
+    "message": "Zur Whitelist hinzufügen"
+  },
+  "popup_rb": {
+    "description": "Remove site from Blacklist",
+    "message": "Aus der Blacklist entfernen"
+  },
+  "popup_rghd_host": {
+    "description": "Radio group option host",
+    "message": "Gastgeber"
+  },
+  "popup_rghd_dom": {
+    "description": "Radio group option domain",
+    "message": "Domain"
+  },
+  "popup_rha": {
+    "description": "Remove history but spare white listed sites",
+    "message": "Entferne alle außer der Whitelist"
+  },
+  "popup_rhb": {
+    "description": "Remove black listed sites history",
+    "message": "Entferne den Blacklist-Verlauf"
+  },
+  "popup_rhc": {
+    "description": "Remove history for current web-site",
+    "message": "Entfernen für $URL$",
+    "placeholders": {
+      "url": {
+        "content": "$1",
+        "example": "http://mozilla.org"
+      }
+    }
+  },
+  "popup_rw": {
+    "description": "Remove site from Whitelist",
+    "message": "Aus der Whitelist entfernen"
+  }
+}

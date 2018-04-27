@@ -1,0 +1,152 @@
+{
+  "error_actionType": {
+    "description": "Error for unsupported actions",
+    "message": "要求采取不当行动"
+  },
+  "error_pageType": {
+    "description": "Error for page type",
+    "message": "扩展名不支持页面类型"
+  },
+  "extensionDescription": {
+    "description": "Description of the extension.",
+    "message": "删除浏览记录。"
+  },
+  "extensionName": {
+    "description": "Name of the extension.",
+    "message": "删除历史"
+  },
+  "notif_ab": {
+    "description": "Notify of complete action: Add to Blacklist",
+    "message": "成功将网站添加到黑名单。"
+  },
+  "notif_aw": {
+    "description": "Notify of complete action: Add to Whitelist",
+    "message": "成功将网站添加到白名单。"
+  },
+  "notif_rb": {
+    "description": "Notify of complete action: Remove from Blacklist",
+    "message": "成功从黑名单中删除网站。"
+  },
+  "notif_rha": {
+    "description": "Notify of complete action: Remove for all but whitelist",
+    "message": "删除了所有白名单的网站历史记录。"
+  },
+  "notif_rhb": {
+    "description": "Notify of complete action: Remove for all Blacklist",
+    "message": "删除了所有黑名单的网站历史记录。"
+  },
+  "notif_rhc": {
+    "description": "Notify of complete action: Remove for Current webstie",
+    "message": "当前的网站历史已成功删除"
+  },
+  "notif_rw": {
+    "description": "Notify of complete action: Remove from Whitelist",
+    "message": "成功从白名单中删除网站。"
+  },
+  "options_action_header": {
+    "description": "Header text for actions config",
+    "message": "操作配置"
+  },
+  "options_action_rhbInt": {
+    "description": "Option text for regular interval blacklist clearing",
+    "message": "在窗口关闭时启用清除黑名单"
+  },
+  "options_btn_close": {
+    "description": "Close button text",
+    "message": "取消"
+  },
+  "options_btn_save": {
+    "description": "Save button text",
+    "message": "保存更改"
+  },
+  "options_menu_bl": {
+    "description": "Blacklist config to enable",
+    "message": "启用黑名单"
+  },
+  "options_menu_cw": {
+    "description": "Title for the config page",
+    "message": "为当前网站启用删除历史记录"
+  },
+  "options_menu_header": {
+    "description": "What menu in options does in config page",
+    "message": "菜单配置"
+  },
+  "options_menu_wl": {
+    "description": "Whitelist config to enable",
+    "message": "启用白名单"
+  },
+  "options_table_header1": {
+    "description": "Table header value for column 1",
+    "message": "主办"
+  },
+  "options_table_header2": {
+    "description": "Table header value for column 2",
+    "message": "删除"
+  },
+  "options_title_ext": {
+    "description": "Title for the config page",
+    "message": "删除历史配置"
+  },
+  "options_title_bl": {
+    "description": "Title for the blacklist table",
+    "message": "黑名单"
+  },
+  "options_title_wl": {
+    "description": "Title for the whitelist table",
+    "message": "白名单"
+  },
+  "options_warn_removeEntry": {
+    "description": "Warning message to throw to the users",
+    "message": "删除主机条目？"
+  },
+  "options_warn_remove_bl": {
+    "description": "Warning message for removing blacklist option",
+    "message": "删除黑名单条目？"
+  },
+  "options_warn_remove_wl": {
+    "description": "Warning message for removing whitelist option",
+    "message": "删除白名单条目？"
+  },
+  "popup_ab": {
+    "description": "Blacklist a site to just remove black list history",
+    "message": "添加到黑名单"
+  },
+  "popup_aw": {
+    "description": "White list a site to not remove history",
+    "message": "添加到白名单"
+  },
+  "popup_rb": {
+    "description": "Remove site from Blacklist",
+    "message": "从黑名单中删除"
+  },
+  "popup_rghd_host": {
+    "description": "Radio group option host",
+    "message": "主办"
+  },
+  "popup_rghd_dom": {
+    "description": "Radio group option domain",
+    "message": "域"
+  },
+  "popup_rha": {
+    "description": "Remove history but spare white listed sites",
+    "message": "全部删除，但删除白名单"
+  },
+  "popup_rhb": {
+    "description": "Remove black listed sites history",
+    "message": "删除黑名单历史记录"
+  },
+  "popup_rhc": {
+    "description": "Remove history for current web-site",
+    "message": "删除$URL$",
+    "placeholders": {
+      "url": {
+        "content": "$1",
+        "example": "http://mozilla.org"
+      }
+    }
+  },
+  "popup_rw": {
+    "description": "Remove site from Whitelist",
+    "message": "从白名单中删除"
+  }
+}

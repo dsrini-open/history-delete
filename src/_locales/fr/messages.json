@@ -1,0 +1,152 @@
+{
+  "error_actionType": {
+    "description": "Error for unsupported actions",
+    "message": "Action incorrecte demandée"
+  },
+  "error_pageType": {
+    "description": "Error for page type",
+    "message": "Type de page non pris en charge par l'extension"
+  },
+  "extensionDescription": {
+    "description": "Description of the extension.",
+    "message": "Supprimer l'historique de navigation."
+  },
+  "extensionName": {
+    "description": "Name of the extension.",
+    "message": "Effacer l'historique"
+  },
+  "notif_ab": {
+    "description": "Notify of complete action: Add to Blacklist",
+    "message": "Ajout du site Web à la liste noire avec succès."
+  },
+  "notif_aw": {
+    "description": "Notify of complete action: Add to Whitelist",
+    "message": "Ajout du site Web à Whitelist avec succès."
+  },
+  "notif_rb": {
+    "description": "Notify of complete action: Remove from Blacklist",
+    "message": "Suppression réussie du site Web de Blacklist"
+  },
+  "notif_rha": {
+    "description": "Notify of complete action: Remove for all but whitelist",
+    "message": "Suppression de l'historique du site Web pour tous les sites sauf les listes blanches."
+  },
+  "notif_rhb": {
+    "description": "Notify of complete action: Remove for all Blacklist",
+    "message": "Historique du site supprimé pour toutes les listes noires."
+  },
+  "notif_rhc": {
+    "description": "Notify of complete action: Remove for Current webstie",
+    "message": "L'historique du site Web actuel a bien été supprimé."
+  },
+  "notif_rw": {
+    "description": "Notify of complete action: Remove from Whitelist",
+    "message": "Site Web supprimé de la liste blanche supprimé avec succès."
+  },
+  "options_action_header": {
+    "description": "Header text for actions config",
+    "message": "Configurations d'action"
+  },
+  "options_action_rhbInt": {
+    "description": "Option text for regular interval blacklist clearing",
+    "message": "Activer l'effacement de la liste noire sur la fenêtre"
+  },
+  "options_btn_close": {
+    "description": "Close button text",
+    "message": "Annuler"
+  },
+  "options_btn_save": {
+    "description": "Save button text",
+    "message": "Sauvegarder les modifications"
+  },
+  "options_menu_bl": {
+    "description": "Blacklist config to enable",
+    "message": "Activer la liste noire"
+  },
+  "options_menu_cw": {
+    "description": "Title for the config page",
+    "message": "Activer Supprimer l'historique du site Web actuel"
+  },
+  "options_menu_header": {
+    "description": "What menu in options does in config page",
+    "message": "Configurations de menu"
+  },
+  "options_menu_wl": {
+    "description": "Whitelist config to enable",
+    "message": "Activer la liste blanche"
+  },
+  "options_table_header1": {
+    "description": "Table header value for column 1",
+    "message": "Hôte"
+  },
+  "options_table_header2": {
+    "description": "Table header value for column 2",
+    "message": "Effacer"
+  },
+  "options_title_ext": {
+    "description": "Title for the config page",
+    "message": "Supprimer l'historique config"
+  },
+  "options_title_bl": {
+    "description": "Title for the blacklist table",
+    "message": "Listes noires"
+  },
+  "options_title_wl": {
+    "description": "Title for the whitelist table",
+    "message": "Whitelists"
+  },
+  "options_warn_removeEntry": {
+    "description": "Warning message to throw to the users",
+    "message": "Supprimer l'entrée de l'hôte?"
+  },
+  "options_warn_remove_bl": {
+    "description": "Warning message for removing blacklist option",
+    "message": "Supprimer les entrées de la liste noire?"
+  },
+  "options_warn_remove_wl": {
+    "description": "Warning message for removing whitelist option",
+    "message": "Supprimer les entrées de la liste blanche?"
+  },
+  "popup_ab": {
+    "description": "Blacklist a site to just remove black list history",
+    "message": "Ajouter à la liste noire"
+  },
+  "popup_aw": {
+    "description": "White list a site to not remove history",
+    "message": "Ajouter à la liste blanche"
+  },
+  "popup_rb": {
+    "description": "Remove site from Blacklist",
+    "message": "Supprimer de la liste noire"
+  },
+  "popup_rghd_host": {
+    "description": "Radio group option host",
+    "message": "Hôte"
+  },
+  "popup_rghd_dom": {
+    "description": "Radio group option domain",
+    "message": "Domaine"
+  },
+  "popup_rha": {
+    "description": "Remove history but spare white listed sites",
+    "message": "Supprimer tout sauf la liste blanche"
+  },
+  "popup_rhb": {
+    "description": "Remove black listed sites history",
+    "message": "Supprimer l'historique de la liste noire"
+  },
+  "popup_rhc": {
+    "description": "Remove history for current web-site",
+    "message": "Supprimer pour $URL$",
+    "placeholders": {
+      "url": {
+        "content": "$1",
+        "example": "http://mozilla.org"
+      }
+    }
+  },
+  "popup_rw": {
+    "description": "Remove site from Whitelist",
+    "message": "Supprimer de la liste blanche"
+  }
+}
