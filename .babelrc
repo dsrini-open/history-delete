@@ -4,9 +4,9 @@
       "env",
       {
         "targets": {
-          "chrome": 55,
-          "firefox": 57,
-          "opera": 42
+          "chrome": 50,
+          "firefox": 53,
+          "opera": 40
         }
       }
     ]
