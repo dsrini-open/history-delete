@@ -23,7 +23,9 @@ async function load(area = 'sync'){
 
 async function init(area = 'sync') {
   area = await getStorageArea(area);
-  await load(area);
+  const stored = await getAll(area);
+  if(!_.isEqual(stored.menuCfg, initialStorage.menuCfg))
+    await load(area);
   return;
 }
 
