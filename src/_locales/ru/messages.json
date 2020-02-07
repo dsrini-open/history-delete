@@ -1,163 +1,163 @@
 {
   "error_actionType": {
     "description": "Error for unsupported actions",
-    "message": "要求采取不当行动"
+    "message": "Запрошено неправильное действие"
   },
   "error_pageType": {
     "description": "Error for page type",
-    "message": "扩展名不支持页面类型"
+    "message": "Тип страницы не поддерживается расширением"
   },
   "extensionDescription": {
     "description": "Description of the extension.",
-    "message": "删除浏览记录。"
+    "message": "Удалить историю браузера."
   },
   "extensionName": {
     "description": "Name of the extension.",
-    "message": "删除历史"
+    "message": "Удалить историю"
   },
   "notif_ab": {
     "description": "Notify of complete action: Add to Blacklist",
-    "message": "成功将网站添加到黑名单。"
-  },
-  "notif_alarm_clear_rhaInt": {
-    "description": "Notify of complete action: Clear Remove Whitelist Alarm",
-    "message": "清除告警，清除基于白名单的历史记录"
+    "message": "Сайт успешно добавлен в черный список."
   },
   "notif_alarm_create_rhaInt": {
     "description": "Notify of complete action: Create Remove Whitelist Alarm",
-    "message": "创建了用于删除基于白名单的历史记录的警报。"
+    "message": "Создан будильник для удаления истории на основе белого списка."
+  },
+  "notif_alarm_clear_rhaInt": {
+    "description": "Notify of complete action: Clear Remove Whitelist Alarm",
+    "message": "Сброс тревоги для удаления истории на основе белого списка."
   },
   "notif_aw": {
     "description": "Notify of complete action: Add to Whitelist",
-    "message": "成功将网站添加到白名单。"
+    "message": "Сайт успешно добавлен в белый список."
   },
   "notif_rb": {
     "description": "Notify of complete action: Remove from Blacklist",
-    "message": "成功从黑名单中删除网站。"
+    "message": "Сайт успешно удален из черного списка."
   },
   "notif_rha": {
     "description": "Notify of complete action: Remove for all but whitelist",
-    "message": "删除了所有白名单的网站历史记录。"
+    "message": "Удалена история сайта для всех, кроме белых списков."
   },
   "notif_rhb": {
     "description": "Notify of complete action: Remove for all Blacklist",
-    "message": "删除了所有黑名单的网站历史记录。"
+    "message": "Удалена история сайта для всех черных списков."
   },
   "notif_rhc": {
     "description": "Notify of complete action: Remove for Current webstie",
-    "message": "当前的网站历史已成功删除"
+    "message": "Текущая история сайта успешно удалена."
   },
   "notif_rw": {
     "description": "Notify of complete action: Remove from Whitelist",
-    "message": "成功从白名单中删除网站。"
+    "message": "Сайт успешно удален из белого списка."
   },
   "options_action_header": {
     "description": "Header text for actions config",
-    "message": "操作配置"
+    "message": "Конфигурации действий"
   },
   "options_action_rhaInt": {
     "description": "Option text for regular interval whitelist clearing",
-    "message": "启用间隔清除白名单"
+    "message": "Включить очистку белого списка на интервале"
   },
   "options_action_rhbInt": {
     "description": "Option text for regular interval blacklist clearing",
-    "message": "在窗口关闭时启用清除黑名单"
+    "message": "Включить очистку черного списка при закрытии окна"
   },
   "options_btn_close": {
     "description": "Close button text",
-    "message": "取消"
+    "message": "Отмена"
   },
   "options_btn_save": {
     "description": "Save button text",
-    "message": "保存更改"
+    "message": "Сохранить изменения"
   },
   "options_menu_bl": {
     "description": "Blacklist config to enable",
-    "message": "启用黑名单"
+    "message": "Включить черный список"
   },
   "options_menu_cw": {
     "description": "Title for the config page",
-    "message": "为当前网站启用删除历史记录"
+    "message": "Включить удаление истории для текущего сайта"
   },
   "options_menu_header": {
     "description": "What menu in options does in config page",
-    "message": "菜单配置"
+    "message": "Конфигурации меню"
   },
   "options_menu_wl": {
     "description": "Whitelist config to enable",
-    "message": "启用白名单"
+    "message": "Включить белый список"
   },
   "options_misc_alarmInt": {
     "description": "Alarm interval",
-    "message": "警报间隔（如果已配置）"
+    "message": "Интервал для аварийных сигналов (если настроен)"
   },
   "options_misc_header": {
     "description": "Miscellaneous Options",
-    "message": "杂项选择"
+    "message": "Разные варианты"
   },
   "options_table_header1": {
     "description": "Table header value for column 1",
-    "message": "主办"
+    "message": "хозяин"
   },
   "options_table_header2": {
     "description": "Table header value for column 2",
-    "message": "删除"
+    "message": "удалять"
   },
   "options_title_bl": {
     "description": "Title for the blacklist table",
-    "message": "黑名单"
+    "message": "Черные списки"
   },
   "options_title_ext": {
     "description": "Title for the config page",
-    "message": "删除历史配置"
+    "message": "Удалить историю конфигурации"
   },
   "options_title_wl": {
     "description": "Title for the whitelist table",
-    "message": "白名单"
+    "message": "Головоломки"
   },
   "options_warn_removeEntry": {
     "description": "Warning message to throw to the users",
-    "message": "删除主机条目？"
+    "message": "Удалить запись хоста?"
   },
   "options_warn_remove_bl": {
     "description": "Warning message for removing blacklist option",
-    "message": "删除黑名单条目？"
+    "message": "Удалить записи в черном списке?"
   },
   "options_warn_remove_wl": {
     "description": "Warning message for removing whitelist option",
-    "message": "删除白名单条目？"
+    "message": "Удалить записи из белого списка?"
   },
   "popup_ab": {
     "description": "Blacklist a site to just remove black list history",
-    "message": "添加到黑名单"
+    "message": "Добавить в черный список"
   },
   "popup_aw": {
     "description": "White list a site to not remove history",
-    "message": "添加到白名单"
+    "message": "Добавить в белый список"
   },
   "popup_rb": {
     "description": "Remove site from Blacklist",
-    "message": "从黑名单中删除"
+    "message": "Удалить из черного списка"
   },
   "popup_rghd_dom": {
     "description": "Radio group option domain",
-    "message": "域"
+    "message": "Домен"
   },
   "popup_rghd_host": {
     "description": "Radio group option host",
-    "message": "主办"
+    "message": "хозяин"
   },
   "popup_rha": {
     "description": "Remove history but spare white listed sites",
-    "message": "全部删除，但删除白名单"
+    "message": "Удалить все, кроме белого списка"
   },
   "popup_rhb": {
     "description": "Remove black listed sites history",
-    "message": "删除黑名单历史记录"
+    "message": "Удалить историю черного списка"
   },
   "popup_rhc": {
     "description": "Remove history for current web-site",
-    "message": "删除$URL$",
+    "message": "Удалить за $URL$,",
     "placeholders": {
       "url": {
         "content": "$1",
@@ -167,6 +167,6 @@
   },
   "popup_rw": {
     "description": "Remove site from Whitelist",
-    "message": "从白名单中删除"
+    "message": "Удалить из белого списка"
   }
 }

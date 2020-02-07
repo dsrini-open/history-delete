@@ -1,0 +1,7 @@
+--require "@babel/register"
+--require "jsdom-global/register"
+--require "test/setup.js"
+--recursive
+"src/**/test/**/*.spec.js" "src/**/*.vue"
+--reporter "spec"
+--webpack-config test/webpack.config.js

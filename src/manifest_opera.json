@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "__MSG_extensionName__",
   "description": "__MSG_extensionDescription__",
-  "version": "1.1",
+  "version": "2.0",
   "author": "dsrini.open",
   "developer": {
     "name": "dsrini.open",
@@ -10,8 +10,9 @@
   },
   "homepage_url": "https://github.com/dsrini-open/history-delete",
   "default_locale": "en",
-  "minimum_opera_version": "40.0",
+  "minimum_opera_version": "63.0",
   "permissions": [
+    "alarms",
     "notifications",
     "storage",
     "history",

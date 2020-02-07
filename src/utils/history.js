@@ -1,39 +1,47 @@
-import browser from 'webextension-polyfill';
-import {isUrlInDomains} from './common';
+import browser from "webextension-polyfill";
+import { isUrlInDomains } from "utils/common";
 
-function search(domain = "") {
+export const search = (domain = "") => {
   return browser.history.search({
     text: domain,
     startTime: 0,
     maxResults: 2147483647
   });
-}
+};
 
-async function remove(domain) {
-  let results = await search(domain);
-  for (let k in results) {
-    await browser.history.deleteUrl({ url: results[k].url });
-  }
-}
+export const remove = async domain => {
+  // eslint-disable-next-line no-use-before-define
+  const results = await factory.search(domain);
+  const removes = [];
+  results.forEach(result => {
+    removes.push(browser.history.deleteUrl({ url: result.url }));
+  });
+  await Promise.all(removes);
+};
 
-async function removeAll(domains) {
-  for(let domain of domains){
-    await remove(domain);
-  }
-}
+export const removeAll = async domains => {
+  const removes = [];
+  domains.forEach(domain =>
+    // eslint-disable-next-line no-use-before-define
+    removes.push(factory.remove(domain))
+  );
+  await Promise.all(removes);
+};
 
-async function ignoreAll(domains) {
-  let results = await search();
-  for (let k in results){
-    if(!isUrlInDomains(results[k].url, domains)) {
-      await browser.history.deleteUrl({ url: results[k].url });
+export const ignoreAll = async domains => {
+  // eslint-disable-next-line no-use-before-define
+  const results = await factory.search();
+  if (!(Array.isArray(results) && results.length)) return;
+  const removes = [];
+  results.forEach(result => {
+    if (!isUrlInDomains(result.url, domains)) {
+      removes.push(browser.history.deleteUrl({ url: result.url }));
     }
-  }
-}
+  });
+  await Promise.all(removes);
+};
 
-module.exports = {
+export const factory = {
   search,
-  remove,
-  removeAll,
-  ignoreAll
+  remove
 };

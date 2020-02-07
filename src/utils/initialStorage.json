@@ -1,4 +1,5 @@
 {
+  "version": "2.0",
   "whiteList": [],
   "blackList": [],
   "menuCfg": {
@@ -8,7 +9,11 @@
       "cw"
     ],
     "actions": [
-      "rhbInt"
+      "rhbInt",
+      "rhaInt"
+    ],
+    "misc": [
+      "alarmInt"
     ],
     "cfg": {
       "wl": [
@@ -25,6 +30,8 @@
     }
   },
   "rhbInt": true,
+  "rhaInt": false,
+  "alarmInt": 4,
   "popupMenus": [
     "aw",
     "rha",

@@ -1,37 +1,62 @@
 <template>
 <div id="app" v-show="pageReady">
-  <v-app dark>
+  <v-app>
     <v-layout row>
       <v-flex md10 offset-md1>
         <v-card>
           <v-toolbar>
             <v-toolbar-title>{{ options.title }}</v-toolbar-title>
           </v-toolbar>
-          <v-list v-if="options.menu" v-bind:subheader="!!options.menu.subheader">
+          <v-list rounded v-if="options.menu" v-bind:subheader="!!options.menu.subheader">
             <v-subheader v-if="options.menu.subheader">{{ options.menu.subheader }}</v-subheader>
-            <template v-for="(item, index) in options.menu.items">
-              <v-list-tile>
-                <v-list-tile-action>
-                  <v-checkbox id="item.id" v-model="item.value"></v-checkbox>
-                </v-list-tile-action>
-                <v-list-tile-content @click="toggleCheck(index, 'menu')">
-                  <v-list-tile-title>{{ item.title }}</v-list-tile-title>
-                </v-list-tile-content>
-              </v-list-tile>
-            </template>
+            <v-list-item-group v-model="options.menu.group" multiple>
+              <template v-for="(item, index) in options.menu.items">
+                <v-list-item :key="`menu_${index}`" @click="toggleCheck(index, 'menu')">
+                  <template v-slot:default="{ }">
+                    <v-list-item-action>
+                      <v-checkbox v-bind:id="item.id" v-model="item.value"></v-checkbox>
+                    </v-list-item-action>
+                    <v-list-item-content>
+                      <v-list-item-title>{{ item.title }}</v-list-item-title>
+                    </v-list-item-content>
+                  </template>
+                </v-list-item>
+              </template>
+            </v-list-item-group>
           </v-list>
-          <v-list v-if="options.action" v-bind:subheader="!!options.action.subheader">
+          <v-list rounded v-if="options.action" v-bind:subheader="!!options.action.subheader">
             <v-subheader v-if="options.action.subheader">{{ options.action.subheader }}</v-subheader>
-            <template v-for="(item, index) in options.action.items">
-              <v-list-tile>
-                <v-list-tile-action>
-                  <v-checkbox id="item.id" v-model="item.value"></v-checkbox>
-                </v-list-tile-action>
-                <v-list-tile-content @click="toggleCheck(index, 'action')">
-                  <v-list-tile-title>{{ item.title }}</v-list-tile-title>
-                </v-list-tile-content>
-              </v-list-tile>
-            </template>
+            <v-list-item-group v-model="options.action.group" multiple>
+              <template v-for="(item, index) in options.action.items">
+                <v-list-item :key="`action_${index}`" @click="toggleCheck(index, 'action')">
+                  <template v-slot:default="{ }">
+                    <v-list-item-action>
+                      <v-checkbox v-bind:id="item.id" v-model="item.value"></v-checkbox>
+                    </v-list-item-action>
+                    <v-list-item-content>
+                      <v-list-item-title>{{ item.title }}</v-list-item-title>
+                    </v-list-item-content>
+                </template>
+                </v-list-item>
+              </template>
+            </v-list-item-group>
+          </v-list>
+          <v-list v-if="options.misc" v-bind:subheader="!!options.misc.subheader">
+              <v-subheader v-if="options.misc.subheader">{{ options.misc.subheader }}</v-subheader>
+              <v-list-item>
+              <template v-for="(item, index) in options.misc.items">
+                <v-slider v-if="item.type === 'slider'"
+                    :key="index"
+                    v-bind:id="item.id"
+                    v-model="item.value"
+                    :max="23"
+                    :min="1"
+                    class="align-center"
+                    thumb-label
+                    :label="item.label"
+                  />
+              </template>
+            </v-list-item>
           </v-list>
         </v-card>
         <v-container fluid>
@@ -41,19 +66,23 @@
               <v-card light>
                 <v-data-table
                   light
-                  :headers="wl.headers"
+                  :header="wl.headers"
                   :items="wl.items"
-                  hide-actions
+                  hide-default-footer
                   class="elevation-1">
-                  <template slot="items" slot-scope="props">
-                    <td>{{ props.item.host }}</td>
-                    <td class="justify-center layout px-0">
-                      <v-btn icon class="mx-0" @click="deleteItem(props.item, wl.id)">
-                        <v-icon color="red darken-2">delete</v-icon>
-                      </v-btn>
-                    </td>
+                  <template v-slot:body="{ items }">
+                    <template v-for="(item, index) in items">
+                      <tr :key="index">
+                        <td class="left">{{ item.host }}</td>
+                        <td class="right">
+                          <v-btn icon class="mx-0" @click="deleteItem(item, wl.id)">
+                            <v-icon color="red darken-2">delete</v-icon>
+                          </v-btn>
+                        </td>
+                      </tr>
+                    </template>
                   </template>
-                  <template slot="no-data">
+                  <template v-slot:no-data>
                     No data to display
                   </template>
                 </v-data-table>
@@ -63,19 +92,23 @@
               <v-subheader class="black white--text">{{ bl.title }}</v-subheader>
               <v-card>
                 <v-data-table
-                  :headers="bl.headers"
+                  :header="bl.headers"
                   :items="bl.items"
-                  hide-actions
+                  hide-default-footer
                   class="elevation-1">
-                  <template slot="items" slot-scope="props">
-                    <td>{{ props.item.host }}</td>
-                    <td class="justify-center layout px-0">
-                      <v-btn icon class="mx-0" @click="deleteItem(props.item, bl.id)">
-                        <v-icon color="red darken-2">delete</v-icon>
-                      </v-btn>
-                    </td>
+                  <template v-slot:body="{ items }">
+                    <template v-for="(item, index) in items">
+                      <tr :key="index">
+                        <td class="left">{{ item.host }}</td>
+                        <td class="right">
+                          <v-btn icon class="mx-0" @click="deleteItem(item, bl.id)">
+                            <v-icon color="red darken-2">delete</v-icon>
+                          </v-btn>
+                        </td>
+                      </tr>
+                    </template>
                   </template>
-                  <template slot="no-data">
+                  <template v-slot:no-data>
                     No data to display
                   </template>
                 </v-data-table>
@@ -84,12 +117,12 @@
           </v-layout>
         </v-container>
 
-        <div class="text-xs-center">
-          <v-btn round color="teal" @click="close()">
+        <div class="text-center">
+          <v-btn rounded color="teal" @click="close()">
             <v-icon left>close</v-icon>
             {{ getOptionMsg('close', 'btn') }}
           </v-btn>
-          <v-btn round color="teal" @click="saveChanges()">
+          <v-btn rounded color="teal" @click="saveChanges()">
             <v-icon left>save</v-icon>
             {{ getOptionMsg('save', 'btn') }}
           </v-btn>
@@ -103,9 +136,8 @@
 
 <script>
 import browser from 'webextension-polyfill';
-import storage from 'utils/storage';
-import {isInStorageList} from 'utils/data';
-import {getMessage, getActiveTab, getDomain} from 'utils/common';
+import * as storage from 'utils/storage';
+import { getMessage } from 'utils/common';
 import _ from 'lodash';
 
 export default {
@@ -118,10 +150,16 @@ export default {
         title: this.getOptionMsg('ext', 'title'),
         menu: {
           subheader: this.getOptionMsg('header'),
-          items: []
+          items: [],
+          group: []
         },
         action: {
           subheader: this.getOptionMsg('header', 'action'),
+          items: [],
+          group: []
+        },
+        misc: {
+          subheader: this.getOptionMsg('header', 'misc'),
           items: []
         }
       },
@@ -169,24 +207,29 @@ export default {
     getMessage,
 
     getOptionMsg: function(id, path = 'menu') {
-      return getMessage('options_' + path + '_' + id);
+      return getMessage(`options_${path}_${id}`);
     },
 
-    deleteItem: function(item, id) {
+    deleteItem: function(item, id, confirmDial = window.confirm) {
       const index = this[id].items.indexOf(item);
-      confirm( this.getOptionMsg('removeEntry','warn') ) &&  this[id].items.splice(index, 1);
+      // eslint-disable-next-line no-unused-expressions
+      confirmDial( this.getOptionMsg('removeEntry','warn') ) && this[id].items.splice(index, 1);
     },
 
     toggleCheck: function(id, path) {
       this.options[path].items[id].value = !this.options[path].items[id].value;
     },
 
-    removeList: function(id) {
-      if(confirm(this.getOptionMsg(id ,'warn_remove'))) {
+    removeList: function(id, confirmDial = window.confirm) {
+      if(confirmDial(this.getOptionMsg(id ,'warn_remove'))) {
         this[id].items.splice(0);
       } else {
         const [item] = _.filter(this.options.menu.items, {"id": id});
         item.value = true;
+        const idx = this.options.menu.items.findIndex(obj => obj.id === id);
+        const arr = this.options.menu.group;
+        arr.push(idx);
+        this.$set(this.options.menu, 'group', arr);
       }
     },
 
@@ -200,12 +243,13 @@ export default {
     },
 
     close : async function() {
-      let tab  = await browser.tabs.getCurrent();
+      const tab  = await browser.tabs.getCurrent();
       browser.tabs.remove(tab.id);
     },
 
     saveChanges: async function() {
-      let saveObj = {};
+      const constKeys = ["action", "misc"];
+      const saveObj = {};
       saveObj.whiteList = _.map(this.wl.items, "host");
       saveObj.blackList = _.map(this.bl.items, "host");
 
@@ -216,8 +260,11 @@ export default {
       });
       saveObj.popupMenus = popupMenus;
 
-      _.each(this.options.action.items, (item) => {
-        saveObj[item.id] =  item.value;
+      // loop through action, misc items
+      constKeys.forEach(key => {
+        this.options[key].items.forEach(item => {
+          saveObj[item.id] =  item.value;
+        });
       });
 
       await storage.set(saveObj);
@@ -229,7 +276,9 @@ export default {
   created: async function() {
     const storageVals = await storage.getAll();
 
-    //Generate options from the storage values
+    document.title = this.options.title;
+
+    // Generate options from the storage values
     _.each(storageVals.menuCfg.options, (key) => {
       this.options.menu.items.push({
         id: key,
@@ -244,12 +293,31 @@ export default {
         value: storageVals[key]
       });
     });
+    _.each(storageVals.menuCfg.misc, (key) => {
+      this.options.misc.items.push({
+        type: key === 'alarmInt' ? "slider" : '',
+        id: key,
+        label: this.getOptionMsg(key, 'misc'),
+        value: storageVals[key]
+      });
+    });
     _.each(storageVals.whiteList, (key) => {
       this.wl.items.push({ host: key });
     });
     _.each(storageVals.blackList, (key) => {
       this.bl.items.push({ host: key });
     });
+    // generate group array keys from values present
+    let group = [];
+    this.options.menu.items.forEach((obj, idx) => {
+      if(obj.value === true) group.push(idx);
+    });
+    this.options.menu.group = group;
+    group = [];
+    this.options.action.items.forEach((obj, idx) => {
+      if(obj.value === true) group.push(idx);
+    });
+    this.options.action.group = group;
 
     this.storageCfg = storageVals.menuCfg.cfg;
     this.pageReady = true;
@@ -258,28 +326,36 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" rel="stylesheet/scss">
+$bg-color: #F57C00;
 
 /* Vuetify hacks to display custom font, color */
-.application {
+.v-application {
   font-family: 'Noto Sans', sans-serif;
   line-height: 1.5;
 }
 
-.list__tile:hover {
-  background-color: #F57C00 !important;
+.v-list-item:hover {
+  background-color: $bg-color !important;
 }
 
 /* Vuetify hack for table overflow */
-tbody {
+table {
   display: block;
   height: 300px;
   overflow: auto;
 }
 
-thead, tbody tr {
+thead, tr {
   display: table;
   width: 100%;
   table-layout: fixed;
+}
+
+.v-data-table td.left {
+  width: 80%;
+}
+.v-data-table td.right {
+  width: 20%;
 }
 </style>

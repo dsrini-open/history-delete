@@ -14,11 +14,11 @@ const targetEnv = process.env.TARGET_ENV || 'firefox';
 const isProduction = process.env.NODE_ENV === 'production';
 const distFolder = process.env.DIST_FOLDER || 'dist';
 
-gulp.task('clean', function() {
+function clean() {
   return del([`${distFolder}`]);
-});
+}
 
-gulp.task('js', function(done) {
+function js(done) {
   exec('webpack --display-error-details --colors', function(
     err,
     stdout,
@@ -28,16 +28,16 @@ gulp.task('js', function(done) {
     console.log(stderr);
     done(err);
   });
-});
+}
 
-gulp.task('html', function() {
+function html() {
   return gulp
     .src('src/**/*.html', {base: '.'})
     .pipe(gulpif(isProduction, htmlmin({collapseWhitespace: true})))
     .pipe(gulp.dest(`${distFolder}`));
-});
+}
 
-gulp.task('locale', function() {
+function locale(done) {
   const localesRootDir = path.join(__dirname, 'src/_locales');
   const localeDirs = readdirSync(localesRootDir).filter(function(file) {
     return lstatSync(path.join(localesRootDir, file)).isDirectory();
@@ -51,17 +51,18 @@ gulp.task('locale', function() {
       .pipe(gulpif(isProduction, jsonmin()))
       .pipe(gulp.dest(path.join(`${distFolder}/_locales`, localeDir)));
   });
-});
+  done();
+}
 
-gulp.task('manifest', function() {
+function manifest() {
   return gulp
     .src(`src/manifest_${targetEnv}.json`)
     .pipe(gulpif(isProduction, jsonmin()))
     .pipe(gulpRen('manifest.json'))
     .pipe(gulp.dest(`${distFolder}`));
-});
+}
 
-gulp.task('copy', function() {
+function copy(done) {
   gulp
     .src('src/icons/*')
     .pipe(gulp.dest(`${distFolder}/src/assets`));
@@ -69,7 +70,7 @@ gulp.task('copy', function() {
     .src('src/fonts/*')
     .pipe(gulp.dest(`${distFolder}/src/assets`));
   gulp
-    .src('ext_libs/mdi/*.+(woff2)')
+    .src('node_modules/material-design-icons-iconfont/dist/fonts/*.+(woff2)')
     .pipe(gulp.dest(`${distFolder}/src/assets/files`));
   gulp
     .src('node_modules/typeface-noto-sans/files/noto-sans-latin-400.+(woff2)')
@@ -77,17 +78,10 @@ gulp.task('copy', function() {
   gulp
     .src('LICENSE')
     .pipe(gulp.dest(`${distFolder}`));
-});
+  done();
+}
 
-gulp.task(
-  'build',
-  gulpSeq('clean', [
-    'js',
-    'html',
-    'locale',
-    'manifest',
-    'copy'
-  ])
-);
+const build = gulp.series(clean, gulp.parallel(js, html, locale, manifest, copy));
 
-gulp.task('default', ['build']);
+exports.default = build;
+exports.clean = clean;

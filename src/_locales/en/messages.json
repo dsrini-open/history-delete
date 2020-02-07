@@ -19,6 +19,14 @@
     "description": "Notify of complete action: Add to Blacklist",
     "message": "Added website to Blacklist successfully."
   },
+  "notif_alarm_create_rhaInt": {
+    "description": "Notify of complete action: Create Remove Whitelist Alarm",
+    "message": "Created alarm for removing history based on whitelist."
+  },
+  "notif_alarm_clear_rhaInt": {
+    "description": "Notify of complete action: Clear Remove Whitelist Alarm",
+    "message": "Cleared alarm for removing history based on whitelist."
+  },
   "notif_aw": {
     "description": "Notify of complete action: Add to Whitelist",
     "message": "Added website to Whitelist successfully."
@@ -46,6 +54,10 @@
   "options_action_header": {
     "description": "Header text for actions config",
     "message": "Action configurations"
+  },
+  "options_action_rhaInt": {
+    "description": "Option text for regular interval whitelist clearing",
+    "message": "Enable Clearing Whitelist on Interval"
   },
   "options_action_rhbInt": {
     "description": "Option text for regular interval blacklist clearing",
@@ -75,6 +87,14 @@
     "description": "Whitelist config to enable",
     "message": "Enable Whitelist"
   },
+  "options_misc_alarmInt": {
+    "description": "Alarm interval",
+    "message": "Interval for alarms (if configured)"
+  },
+  "options_misc_header": {
+    "description": "Miscellaneous Options",
+    "message": "Miscellaneous Options"
+  },
   "options_table_header1": {
     "description": "Table header value for column 1",
     "message": "Host"
@@ -83,13 +103,13 @@
     "description": "Table header value for column 2",
     "message": "Delete"
   },
-  "options_title_ext": {
-    "description": "Title for the config page",
-    "message": "Delete History config"
-  },
   "options_title_bl": {
     "description": "Title for the blacklist table",
     "message": "Blacklists"
+  },
+  "options_title_ext": {
+    "description": "Title for the config page",
+    "message": "Delete History config"
   },
   "options_title_wl": {
     "description": "Title for the whitelist table",
@@ -119,13 +139,13 @@
     "description": "Remove site from Blacklist",
     "message": "Remove from Blacklist"
   },
-  "popup_rghd_host": {
-    "description": "Radio group option host",
-    "message": "Host"
-  },
   "popup_rghd_dom": {
     "description": "Radio group option domain",
     "message": "Domain"
+  },
+  "popup_rghd_host": {
+    "description": "Radio group option host",
+    "message": "Host"
   },
   "popup_rha": {
     "description": "Remove history but spare white listed sites",

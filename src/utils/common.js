@@ -1,98 +1,93 @@
-import browser from 'webextension-polyfill';
-import urlParser from 'psl';
-import _ from 'lodash';
+import browser from "webextension-polyfill";
+import urlParser from "psl";
+import _ from "lodash";
 
-const getMessage = browser.i18n.getMessage;
+export const { getMessage } = browser.i18n;
 
-function showNotification(messageId) {
-  return browser.notifications.create('cbd-notification', {
-    type: 'basic',
-    title: getMessage('extensionName'),
-    message: getMessage(messageId),
-    iconUrl: '/src/assets/icon-32.png'
+export const showNotification = messageId => {
+  return browser.notifications.create("cbd-notification", {
+    type: "basic",
+    title: factory.getMessage("extensionName"),
+    message: factory.getMessage(messageId),
+    iconUrl: "/src/assets/icon-32.png"
   });
-}
+};
 
-async function openPage(page) {
-  const tab = await getActiveTab();
+export const openPage = async page => {
+  const tab = await factory.getActiveTab();
   let pageUrl;
-  switch(page){
+  switch (page) {
     case "settings":
-      pageUrl = browser.extension.getURL("/src/settings/settings.html");
+      pageUrl = browser.runtime.getURL("/src/settings/settings.html");
       break;
     default:
-      throw(getMessage('error_pageType'));
+      throw getMessage("error_pageType");
   }
-  await createTab(pageUrl ,tab.index + 1);
+  await factory.createTab(pageUrl, tab.index + 1);
   window.close();
-}
+};
 
-function createTab(pageUrl) {
-  const props = {url: pageUrl, active: true};
+export const createTab = pageUrl => {
+  const props = { url: pageUrl, active: true };
   return browser.tabs.create(props);
-}
+};
 
-async function getActiveTab() {
+export const getActiveTab = async () => {
   const [tab] = await browser.tabs.query({
     lastFocusedWindow: true,
     active: true
   });
   return tab;
-}
+};
 
-function getHost(url) {
-  var a = document.createElement('a');
+const getHost = url => {
+  const a = document.createElement("a");
   a.href = url;
   return a.hostname;
-}
+};
 
-function getRealSubdomain(parsedSubdomain = '') {
-  if(parsedSubdomain != null) {
-    let arrDomains = parsedSubdomain.split('.');
-    if(arrDomains[0].indexOf('www') > -1)
-      arrDomains.splice(0,1);
-    parsedSubdomain = arrDomains.join('.');
+const getRealSubdomain = (parsedSubdomain = "") => {
+  let realSubdomain = parsedSubdomain;
+  if (parsedSubdomain != null) {
+    const arrDomains = parsedSubdomain.split(".");
+    if (arrDomains[0].indexOf("www") > -1) arrDomains.splice(0, 1);
+    realSubdomain = arrDomains.join(".");
   }
 
-  return parsedSubdomain;
-}
+  return realSubdomain;
+};
 
-function getDomainHost(url){
+export const getDomainHost = url => {
   let host = getHost(url);
   let domain = host;
 
-  if(urlParser.isValid(domain)) {
-    let parsedUrl = urlParser.parse(domain);
+  if (urlParser.isValid(domain)) {
+    const parsedUrl = urlParser.parse(domain);
     let subdomain = getRealSubdomain(parsedUrl.subdomain);
 
     domain = parsedUrl.domain;
-    if(subdomain == null) {
+    if (subdomain == null) {
       host = domain;
     } else {
-      if(subdomain.length > 0)
-        subdomain = subdomain.concat('.') ;
+      if (subdomain.length > 0) subdomain = subdomain.concat(".");
       host = subdomain.concat(parsedUrl.domain);
     }
   }
 
-  return {domain, host};
-}
+  return { domain, host };
+};
 
-function isUrlInDomains(url, domains){
-  let urlDomain = getDomainHost(url).domain;
-  let result = _.find(domains, (domain) => {
+export const isUrlInDomains = (url, domains) => {
+  const urlDomain = getDomainHost(url).domain;
+  const result = _.find(domains, domain => {
     return domain.indexOf(urlDomain) > -1;
   });
 
-  return result ? true : false;
-}
+  return !!result;
+};
 
-module.exports = {
-  getMessage,
-  showNotification,
-  openPage,
+export const factory = {
   createTab,
   getActiveTab,
-  getDomainHost,
-  isUrlInDomains
+  getMessage
 };

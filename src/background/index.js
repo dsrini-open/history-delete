@@ -1,13 +1,19 @@
-import browser from 'webextension-polyfill';
+import browser from "webextension-polyfill";
 
-import storage from 'utils/storage';
-import history from 'utils/history';
-import {showNotification,getMessage} from 'utils/common';
-import {getDataFromStorage, addToStorageList, removeFromStorageList} from  'utils/data';
+import * as install from "utils/install";
+import * as storage from "utils/storage";
+import * as history from "utils/history";
+import * as alarm from "utils/alarm";
+import { showNotification, getMessage } from "utils/common";
+import {
+  getDataFromStorage,
+  addToStorageList,
+  removeFromStorageList
+} from "utils/data";
 
-async function onPopupClick(id, site) {
-  let key, data;
-  switch(id){
+export const onPopupClick = async (id, site) => {
+  let data;
+  switch (id) {
     case "aw":
       await removeFromStorageList("blackList", site);
       await addToStorageList("whiteList", site);
@@ -34,66 +40,120 @@ async function onPopupClick(id, site) {
       await history.ignoreAll(data);
       break;
     default:
-      throw(getMessage("error_actionType"));
-      break;
+      throw getMessage("error_actionType");
   }
 
-  await showNotification('notif_' + id);
+  await showNotification(`notif_${id}`);
+};
 
-}
-
-async function onMessage(request) {
-  switch(request.sender) {
+export const onMessage = async request => {
+  switch (request.sender) {
     case "action":
-      onPopupClick(request.id, request.site);
+      factory.onPopupClick(request.id, request.site);
       break;
     case "settings":
-      configureListeners();
+      factory.configureListeners();
       break;
     default:
-      throw(getMessage("error_actionType"));
+      throw getMessage("error_actionType");
+    // break;
+  }
+};
+
+export const onExtInstall = async details => {
+  switch (details.reason) {
+    case "install":
+    case "update":
+    case "browser_update":
+      await install.merge();
+      break;
+    default:
+      /* not to do anything */
       break;
   }
-}
+};
 
-function onTRemove(tabId, removeInfo) {
-  if(!removeInfo.isWindowClosing) {
+export const onTRemove = async (tabId, removeInfo) => {
+  if (!removeInfo.isWindowClosing) {
     return;
   }
-  if(configureListeners())
-    onPopupClick("rhb");
-}
+  const actionVals = await storage.get("rhbInt");
+  if (actionVals.rhbInt) await factory.onPopupClick("rhb");
+};
 
-function setBrowserAction() {
-  browser.browserAction.setTitle({title: getMessage('extensionName')});
-  browser.browserAction.setPopup({popup: '/src/action/action.html'});
-}
-
-async function configureListeners() {
-  const options = await getDataFromStorage("rhbInt");
-  const remList = browser.tabs.onRemoved;
-
-  if(options == false) {
-    if(remList.hasListener(onTRemove))
-      remList.removeListener(onTRemove);
-  } else {
-    if(!remList.hasListener(onTRemove))
-      remList.addListener(onTRemove);
+export const onAlarm = async alarmInfo => {
+  switch (alarmInfo.name) {
+    case "rhaInt":
+      await factory.onPopupClick("rha");
+      break;
+    default:
+      break;
   }
+};
 
-  return options;
-}
+const addOrRemoveListener = (removeCond, event, callback) => {
+  const hasListener = event.hasListener(callback);
+  if (removeCond) {
+    if (hasListener) event.removeListener(callback);
+  } else if (!hasListener) event.addListener(callback);
+  return { hasListener };
+};
 
-function addListeners() {
-  browser.runtime.onMessage.addListener(onMessage);
+export const configureListeners = async () => {
+  const actions = await storage.get(["rhbInt", "rhaInt"]);
 
-  configureListeners();
-}
+  addOrRemoveListener(
+    actions.rhbInt === false,
+    browser.tabs.onRemoved,
+    factory.onTRemove
+  );
 
-async function onLoad() {
-  await storage.init('sync');
+  const name = "rhaInt";
+
+  if (actions.rhaInt) {
+    const alarmHours = await getDataFromStorage("alarmInt");
+    const delayInMinutes = 1 / 60;
+    const periodInMinutes = alarmHours * 60;
+    await alarm.clear(name);
+    await alarm.create(name, {
+      delayInMinutes,
+      periodInMinutes
+    });
+  } else await alarm.clear(name);
+
+  addOrRemoveListener(
+    actions.rhaInt === false,
+    browser.alarms.onAlarm,
+    factory.onAlarm
+  );
+};
+
+const setBrowserAction = () => {
+  browser.browserAction.setTitle({ title: getMessage("extensionName") });
+  browser.browserAction.setPopup({ popup: "/src/action/action.html" });
+};
+
+export const onLoad = async () => {
   await setBrowserAction();
-  addListeners();
-}
 
-document.addEventListener('DOMContentLoaded', onLoad);
+  factory.configureListeners();
+};
+
+export const addListeners = () => {
+  browser.runtime.onMessage.addListener(factory.onMessage);
+  browser.runtime.onInstalled.addListener(factory.onExtInstall);
+};
+
+export const factory = {
+  onMessage,
+  onTRemove,
+  onAlarm,
+  onExtInstall,
+  onPopupClick,
+  configureListeners,
+  addListeners
+};
+
+factory.addListeners();
+
+document.addEventListener("DOMContentLoaded", onLoad);

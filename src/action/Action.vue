@@ -1,6 +1,6 @@
 <template>
 <div id="app" v-show="pageReady">
-  <v-app dark>
+  <v-app>
     <v-layout row>
     <v-flex md3>
       <v-card>
@@ -8,7 +8,7 @@
           <v-toolbar-title>{{ menu.title }}</v-toolbar-title>
           <v-spacer></v-spacer>
           <template v-for="item in menu.icons">
-            <v-btn icon @click="openPage(item.toString())">
+            <v-btn :key="item" icon @click="openPage(item.toString())">
               <v-icon medium>{{ item }}</v-icon>
             </v-btn>
           </template>
@@ -25,16 +25,16 @@
         <v-list>
           <template v-for="(item, index) in menu.topItems">
             <v-divider :key="index" v-if="item.divider" :inset="item.inset"></v-divider>
-            <v-list-tile :key="item.id" v-else v-show="popupVisible[item.id]" v-bind:avatar="!!item.icon" @click="clickPopup(item.id)">
-              <v-list-tile-avatar v-if="item.icon">
+            <v-list-item :key="item.id" v-else v-show="popupVisible[item.id]" @click="clickPopup(item.id)">
+              <v-list-item-avatar v-if="item.icon">
                 <v-icon v-if="!item.color"> {{ item.icon }}</v-icon>
                 <v-icon v-else v-bind:color="item.color"> {{ item.icon }}</v-icon>
-              </v-list-tile-avatar>
-              <v-list-tile-content>
-                <v-list-tile-title v-if="!binders[item.id]">{{ getTitle(item.id) }}</v-list-tile-title>
-                <v-list-tile-title v-else>{{ binders[item.id] }}</v-list-tile-title>
-              </v-list-tile-content>
-            </v-list-tile>
+              </v-list-item-avatar>
+              <v-list-item-content>
+                <v-list-item-title v-if="!binders[item.id]">{{ getTitle(item.id) }}</v-list-item-title>
+                <v-list-item-title v-else>{{ binders[item.id] }}</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
           </template>
         </v-list>
       </v-card>
@@ -46,14 +46,14 @@
 
 <script>
 import browser from 'webextension-polyfill';
-import storage from 'utils/storage';
+import * as storage from 'utils/storage';
 import {isInStorageList} from 'utils/data';
 import {getMessage, openPage, getActiveTab, getDomainHost} from 'utils/common';
 import _ from 'lodash';
 
 export default {
 
-  data: function(){
+  data: function() {
 
     return {
       pageReady: false,
@@ -95,26 +95,27 @@ export default {
     openPage,
 
     getTitle: function(id) {
-      return getMessage('popup_' + id);
+      return getMessage(`popup_${id}`);
     },
 
-    clickPopup: function(id) {
-      let site = this.domainHost[this.rgHostDom.value];
+    clickPopup: function(id, win  = window) {
+      const site = this.domainHost[this.rgHostDom.value];
       browser.runtime.sendMessage({id, sender: 'action', site: site});
-      window.close();
+      win.close();
     }
   },
 
   created: async function() {
     const options = await storage.get(['popupMenus']);
 
-    //Show only menus that are configured
+    // Show only menus that are configured
     _.each(this.popupVisible, (value, key) => {
-      if(key != 'form_rghd')
+      if(key !== 'form_rghd')
         _.set(this.popupVisible, key, _.includes(options.popupMenus, key));
     });
 
     const tab = await getActiveTab();
+    // eslint-disable-next-line prefer-destructuring
     const url = tab.url;
     const domainHost = getDomainHost(url);
     const isValidPage = !_.isEmpty(domainHost.host);
@@ -125,13 +126,13 @@ export default {
       let property = 'rhc';
 
       if(this.popupVisible[property]){
-        this.binders[property] = getMessage('popup_' + property, domainHost.host);
+        this.binders[property] = getMessage(`popup_${property}`, domainHost.host);
       }
 
       let isBlackListUrl = { domain: false, host: false };
       let isWhiteListUrl = { domain: false, host: false };
 
-      //Configure menus based on which type an url is
+      // Configure menus based on which type an url is
       property = 'aw';
       if(this.popupVisible[property]) {
         isWhiteListUrl = { domain: await isInStorageList("whiteList", domainHost.domain), host: await isInStorageList("whiteList", domainHost.host) };
@@ -154,12 +155,12 @@ export default {
         }
       }
     } else {
-      this.popupVisible = _.mapValues(this.popupVisible, function(o) { return false; });
+      this.popupVisible = _.mapValues(this.popupVisible, function() { return false; });
       this.popupVisible.rha = true;
       this.popupVisible.rhb = true;
     }
 
-    if(domainHost.host == domainHost.domain)
+    if(domainHost.host === domainHost.domain)
       this.popupVisible.form_rghd = false;
 
     this.pageReady = true;
@@ -168,20 +169,16 @@ export default {
 </script>
 
 <style lang="scss">
+$bg-color: #F57C00;
 
 /* Vuetify hacks to display custom font, color */
-.application {
+.v-application {
   font-family: 'Noto Sans', sans-serif;
   line-height: 1.5;
 }
 
-.list__tile:hover {
-  background-color: #F57C00 !important;
-}
-
-/* Vuetify hack for displaying radio group properly */
-.input-group__details {
-  display:none;
+.v-list-item:hover  {
+  background-color: $bg-color !important;
 }
 
 .radio-group{

@@ -19,6 +19,14 @@
     "description": "Notify of complete action: Add to Blacklist",
     "message": "Webseite erfolgreich zu Blacklist hinzugefügt."
   },
+  "notif_alarm_clear_rhaInt": {
+    "description": "Benachrichtigung über vollständige Aktion: Deaktivieren Sie Whitelist-Alarm entfernen",
+    "message": "Deaktivierter Alarm zum Entfernen des Verlaufs basierend auf der Whitelist."
+  },
+  "notif_alarm_create_rhaInt": {
+    "description": "Benachrichtigung über die vollständige Aktion: Erstellen Sie den Alarm Whitelist entfernen",
+    "message": "Alarm zum Entfernen des Verlaufs basierend auf der Whitelist erstellt."
+  },
   "notif_aw": {
     "description": "Notify of complete action: Add to Whitelist",
     "message": "Website zu Whitelist erfolgreich hinzugefügt."
@@ -46,6 +54,10 @@
   "options_action_header": {
     "description": "Header text for actions config",
     "message": "Aktions konfigurationen"
+  },
+  "options_action_rhaInt": {
+    "description": "Optionstext für das Löschen der Whitelist in regelmäßigen Abständen",
+    "message": "Aktivieren Sie das Löschen der Whitelist im Intervall"
   },
   "options_action_rhbInt": {
     "description": "Option text for regular interval blacklist clearing",
@@ -75,6 +87,14 @@
     "description": "Whitelist config to enable",
     "message": "Whitelist aktivieren"
   },
+  "options_misc_alarmInt": {
+    "description": "Alarmintervall",
+    "message": "Intervall für Alarme (falls konfiguriert)"
+  },
+  "options_misc_header": {
+    "description": "Verschiedene Optionen",
+    "message": "Verschiedene Optionen"
+  },
   "options_table_header1": {
     "description": "Table header value for column 1",
     "message": "Gastgeber"
@@ -83,13 +103,13 @@
     "description": "Table header value for column 2",
     "message": "Löschen"
   },
-  "options_title_ext": {
-    "description": "Title for the config page",
-    "message": "Löschen der Verlaufskonfiguration"
-  },
   "options_title_bl": {
     "description": "Title for the blacklist table",
     "message": "Blacklists"
+  },
+  "options_title_ext": {
+    "description": "Title for the config page",
+    "message": "Löschen der Verlaufskonfiguration"
   },
   "options_title_wl": {
     "description": "Title for the whitelist table",
@@ -119,13 +139,13 @@
     "description": "Remove site from Blacklist",
     "message": "Aus der Blacklist entfernen"
   },
-  "popup_rghd_host": {
-    "description": "Radio group option host",
-    "message": "Gastgeber"
-  },
   "popup_rghd_dom": {
     "description": "Radio group option domain",
     "message": "Domain"
+  },
+  "popup_rghd_host": {
+    "description": "Radio group option host",
+    "message": "Gastgeber"
   },
   "popup_rha": {
     "description": "Remove history but spare white listed sites",
