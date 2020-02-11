@@ -23,6 +23,11 @@
       "64": "src/assets/icon-64.png"
     }
   },
+  "icons": {
+    "32": "src/assets/icon-32.png",
+    "48": "src/assets/icon-48.png",
+    "64": "src/assets/icon-64.png"
+  },
   "options_ui": {
     "page": "src/settings/settings.html",
     "chrome_style": false,
