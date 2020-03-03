@@ -34,5 +34,8 @@ Any other Browser please submit a PR to go through the add-on process.
   1. Includes removal of white-listed websites based on interval period (1-24 hours)
   2. Updated header on the settings page
   2. Updated dependencies.
+* 2.1 Version
+  1. Fix to run the initial alarm by alarm interval config.
+  2. Fix to clear the entire history when no whitelist item present.
 
 [Mozilla web-extension]: https://addons.mozilla.org/en-US/firefox/addon/delete-history/

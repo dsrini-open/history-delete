@@ -345,7 +345,7 @@ describe("background", function() {
     );
     expect(alarm.clear).to.have.been.calledOnceWithExactly("rhaInt");
     expect(alarm.create).to.have.been.calledOnceWithExactly("rhaInt", {
-      delayInMinutes: 1 / 60,
+      delayInMinutes: 180,
       periodInMinutes: 180
     });
 

@@ -112,8 +112,8 @@ export const configureListeners = async () => {
 
   if (actions.rhaInt) {
     const alarmHours = await getDataFromStorage("alarmInt");
-    const delayInMinutes = 1 / 60;
-    const periodInMinutes = alarmHours * 60;
+    const delayInMinutes = alarmHours * 60;
+    const periodInMinutes = delayInMinutes;
     await alarm.clear(name);
     await alarm.create(name, {
       delayInMinutes,

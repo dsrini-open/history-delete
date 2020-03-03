@@ -1,6 +1,7 @@
 image: node:latest
 
 cache:
+  key: "$CI_PROJECT_TITLE"
   paths:
     - node_modules/
 

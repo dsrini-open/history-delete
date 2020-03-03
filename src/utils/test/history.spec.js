@@ -18,6 +18,7 @@ describe("utils.history", function() {
 
   afterEach(() => {
     chrome.history.deleteUrl.resetHistory();
+    chrome.history.deleteAll.resetHistory();
     sandbox.restore();
   });
 
@@ -31,6 +32,14 @@ describe("utils.history", function() {
         maxResults: 2147483647
       }
     );
+  });
+
+  it("clear", () => {
+    chrome.history.deleteAll.withArgs(sinon.match.any).yields(true);
+    fns.factory.clear();
+    expect(chrome.history.deleteAll, "clear history").to.have.been.calledOnce;
+    expect(chrome.history.deleteUrl, "clear history deleteUrl not called").to
+      .not.have.been.called;
   });
 
   it("remove", async () => {
@@ -59,12 +68,13 @@ describe("utils.history", function() {
     urls.forEach(url =>
       expect(
         fns.factory.remove,
-        "remove history" + url
+        `remove history${url}`
       ).to.have.been.calledWith(url)
     );
   });
 
-  it("ignoreAll", async () => {
+
+  it("ignoreAll urls", async () => {
     const urls = ["google.com", "site.com"];
     const siteUrls = [
       "some.google.com",
@@ -86,10 +96,25 @@ describe("utils.history", function() {
     commonFns.isUrlInDomains.withArgs(siteUrls[3], urls).returns(true);
     commonFns.isUrlInDomains.withArgs(siteUrls[4], urls).returns(false);
 
-    chrome.history.deleteUrl.yields(true);
-
+    chrome.history.deleteUrl.resolves(true);
     await fns.ignoreAll(urls);
     expect(chrome.history.deleteUrl, "ignoreAll history").to.have.been
       .calledThrice;
+    expect(chrome.history.deleteAll, "ignoreAll deleteAll not called").to.not
+      .have.been.called;
+  });
+
+  it("ignoreAll all", () => {
+    const hist_fns = require("utils/history");
+    sandbox.stub(hist_fns.factory, "clear");
+    hist_fns.factory.clear.yields(true);
+
+    expect(hist_fns.ignoreAll([]), "calling").to.eventually.become(undefined);
+    expect(chrome.history.deleteAll, "ignoreAll deleteAll called").to.have.been
+      .calledOnce;
+    expect(
+      chrome.history.deleteUrl.callCount,
+      "ignoreAll deleteUrl not called"
+    ).to.equal(0);
   });
 });

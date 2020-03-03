@@ -29,8 +29,11 @@ export const removeAll = async domains => {
 };
 
 export const ignoreAll = async domains => {
+  if (!Array.isArray(domains)) return;
+  if (domains.length == 0) return clear();
   // eslint-disable-next-line no-use-before-define
   const results = await factory.search();
+
   if (!(Array.isArray(results) && results.length)) return;
   const removes = [];
   results.forEach(result => {
@@ -41,7 +44,12 @@ export const ignoreAll = async domains => {
   await Promise.all(removes);
 };
 
+const clear = async () => {
+  return browser.history.deleteAll();
+};
+
 export const factory = {
+  clear,
   search,
   remove
 };
