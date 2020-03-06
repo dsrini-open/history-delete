@@ -20,6 +20,11 @@
     "<all_urls>"
   ],
   "content_security_policy": "default-src 'self'; style-src 'self' 'unsafe-inline';",
+  "icons": {
+    "32": "src/assets/icon-32.png",
+    "48": "src/assets/icon-48.png",
+    "64": "src/assets/icon-64.png"
+  },
   "browser_action": {
     "default_icon": {
       "32": "src/assets/icon-32.png",
