@@ -70,6 +70,9 @@ describe("Settings", function() {
       .withArgs("options_action_rhaInt")
       .returns("Enable Clearing Whitelist on Interval");
     common.getMessage
+      .withArgs("options_action_enNot")
+      .returns("Enable Notification");
+    common.getMessage
       .withArgs("options_misc_alarmInt")
       .returns("Interval for alarms (if configured)");
   });
@@ -107,7 +110,7 @@ describe("Settings", function() {
       },
       action: {
         subheader: "Actions",
-        group: [0],
+        group: [0, 2],
         items: [
           {
             id: "rhbInt",
@@ -118,6 +121,11 @@ describe("Settings", function() {
             id: "rhaInt",
             title: "Enable Clearing Whitelist on Interval",
             value: false
+          },
+          {
+            id: "enNot",
+            title: "Enable Notification",
+            value: true
           }
         ]
       },

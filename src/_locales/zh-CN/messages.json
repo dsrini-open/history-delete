@@ -63,6 +63,10 @@
     "description": "Option text for regular interval blacklist clearing",
     "message": "在窗口关闭时启用清除黑名单"
   },
+  "options_action_enNot": {
+    "description": "Option text for enabling notification",
+    "message": "启用通知"
+  },
   "options_btn_close": {
     "description": "Close button text",
     "message": "取消"
@@ -117,7 +121,7 @@
   },
   "options_warn_removeEntry": {
     "description": "Warning message to throw to the users",
-    "message": "删除主机条目？"
+    "message": "删除条目？"
   },
   "options_warn_remove_bl": {
     "description": "Warning message for removing blacklist option",

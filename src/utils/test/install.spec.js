@@ -61,6 +61,7 @@ describe("utils.install", function() {
           "menuCfg",
           "rhbInt",
           "rhaInt",
+          "enNot",
           "alarmInt",
           "popupMenus"
         ]);
@@ -70,7 +71,7 @@ describe("utils.install", function() {
       expect(chrome.storage.sync.set.callCount, "call count").to.equal(response_arr.length);
 
     } catch (E) {
-      console.log(E);
+      console.log(JSON.stringify(E));
       assert.fail("Some error");
     }
   });

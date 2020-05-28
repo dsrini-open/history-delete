@@ -63,6 +63,10 @@
     "description": "Option text for regular interval blacklist clearing",
     "message": "Включить очистку черного списка при закрытии окна"
   },
+  "options_action_enNot": {
+    "description": "Option text for enabling notification",
+    "message": "Включить уведомление"
+  },
   "options_btn_close": {
     "description": "Close button text",
     "message": "Отмена"
@@ -117,7 +121,7 @@
   },
   "options_warn_removeEntry": {
     "description": "Warning message to throw to the users",
-    "message": "Удалить запись хоста?"
+    "message": "Удалить запись?"
   },
   "options_warn_remove_bl": {
     "description": "Warning message for removing blacklist option",

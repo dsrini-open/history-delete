@@ -63,6 +63,10 @@
     "description": "Option text for regular interval blacklist clearing",
     "message": "Activer l'effacement de la liste noire sur la fenêtre"
   },
+  "options_action_enNot": {
+    "description": "Option text for enabling notification",
+    "message": "Activer la notification"
+  },
   "options_btn_close": {
     "description": "Close button text",
     "message": "Annuler"
@@ -117,7 +121,7 @@
   },
   "options_warn_removeEntry": {
     "description": "Warning message to throw to the users",
-    "message": "Supprimer l'entrée de l'hôte?"
+    "message": "Supprimer l'entrée?"
   },
   "options_warn_remove_bl": {
     "description": "Warning message for removing blacklist option",

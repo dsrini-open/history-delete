@@ -30,25 +30,46 @@ describe("utils.alarm", function() {
     chrome.alarms.create
       .withArgs(sinon.match.any, sinon.match.any)
       .returns(response);
-    const name = "dummy",
-      cfg = {
-        delayInMinutes: 1,
-        periodInMinutes: 1 * 60
-      };
+    const name = "dummy";
+    const cfg = {
+      delayInMinutes: 1,
+      periodInMinutes: 1 * 60
+    };
     await fns.create(name, cfg);
     expect(chrome.alarms.create, "alarm create").to.have.been.calledWith(
       name,
       cfg
     );
-    expect(common.showNotification).to.have.been.calledOnceWith("notif_alarm_create_" + name);
+    expect(common.showNotification).to.have.been.calledOnceWith(
+      `notif_alarm_create_${name}`
+    );
   });
 
-  it("clear", () => {
-    const name = "dummy",
-      response = true;
+  it("clear", async () => {
+    const name = "dummy";
+    let response = true;
+    chrome.alarms.clear.resetHistory();
     chrome.alarms.clear.withArgs(name).yields(response);
-    expect(fns.clear(name), "alarm clear").to.eventually.become(response);
-    expect(chrome.alarms.clear, "alarm clear args").to.have.been.calledWith(name);
-    expect(common.showNotification).to.have.been.calledOnceWith("notif_alarm_clear_" + name);
+    let actual_response = await fns.clear(name);
+
+    expect(actual_response, "alarm clear").to.equal(response);
+    expect(chrome.alarms.clear, "alarm clear args").to.have.been.calledWith(
+      name
+    );
+    expect(common.showNotification).to.have.been.calledOnceWith(
+      `notif_alarm_clear_${name}`
+    );
+
+    common.showNotification.resetHistory();
+
+    response = false;
+    chrome.alarms.clear.withArgs(name).yields(response);
+    actual_response = await fns.clear(name);
+
+    expect(actual_response, "alarm clear").to.equal(response);
+    expect(chrome.alarms.clear, "alarm clear args").to.have.been.calledWith(
+      name
+    );
+    expect(common.showNotification).to.not.have.been.called;
   });
 });

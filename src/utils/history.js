@@ -30,7 +30,8 @@ export const removeAll = async domains => {
 
 export const ignoreAll = async domains => {
   if (!Array.isArray(domains)) return;
-  if (domains.length == 0) return clear();
+  // eslint-disable-next-line no-use-before-define, consistent-return
+  if (domains.length === 0) return clear();
   // eslint-disable-next-line no-use-before-define
   const results = await factory.search();
 

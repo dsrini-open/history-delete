@@ -1,0 +1,6 @@
+{
+  "extension": ["js", "vue"],
+  "require": ["@babel/register", "jsdom-global/register", "test/setup.js"],
+  "reporter": "spec",
+  "recursive": true
+}

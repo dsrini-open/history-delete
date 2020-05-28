@@ -1,42 +1,20 @@
 {
-  "version": "2.0",
+  "version": "2.3",
   "whiteList": [],
   "blackList": [],
   "menuCfg": {
-    "options": [
-      "wl",
-      "bl",
-      "cw"
-    ],
-    "actions": [
-      "rhbInt",
-      "rhaInt"
-    ],
-    "misc": [
-      "alarmInt"
-    ],
+    "options": ["wl", "bl", "cw"],
+    "actions": ["rhbInt", "rhaInt", "enNot"],
+    "misc": ["alarmInt"],
     "cfg": {
-      "wl": [
-        "aw",
-        "rha"
-      ],
-      "bl": [
-        "ab",
-        "rhb"
-      ],
-      "cw": [
-        "rhc"
-      ]
+      "wl": ["aw", "rha"],
+      "bl": ["ab", "rhb"],
+      "cw": ["rhc"]
     }
   },
   "rhbInt": true,
   "rhaInt": false,
+  "enNot": true,
   "alarmInt": 4,
-  "popupMenus": [
-    "aw",
-    "rha",
-    "ab",
-    "rhb",
-    "rhc"
-  ]
+  "popupMenus": ["aw", "rha", "ab", "rhb", "rhc"]
 }

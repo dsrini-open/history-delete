@@ -2,15 +2,19 @@ import browser from "webextension-polyfill";
 import urlParser from "psl";
 import _ from "lodash";
 
+import { getDataFromStorage } from "utils/data";
+
 export const { getMessage } = browser.i18n;
 
-export const showNotification = messageId => {
-  return browser.notifications.create("cbd-notification", {
-    type: "basic",
-    title: factory.getMessage("extensionName"),
-    message: factory.getMessage(messageId),
-    iconUrl: "/src/assets/icon-32.png"
-  });
+export const showNotification = async messageId => {
+  const enNot = await getDataFromStorage("enNot");
+  if (enNot)
+    browser.notifications.create("cbd-notification", {
+      type: "basic",
+      title: factory.getMessage("extensionName"),
+      message: factory.getMessage(messageId),
+      iconUrl: "/src/assets/icon-32.png"
+    });
 };
 
 export const openPage = async page => {

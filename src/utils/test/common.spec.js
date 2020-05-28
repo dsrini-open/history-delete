@@ -1,4 +1,5 @@
 import * as fns from "utils/common";
+import * as dataFns from "utils/data";
 
 let sandbox;
 
@@ -22,17 +23,21 @@ describe("utils.common", function() {
 
   it("getMessage", async () => {
     chrome.i18n.getMessage.withArgs("some.message").resolves("someval");
-    //const testval = await chrome.i18n.getMessage("some.message");
-    //console.log(JSON.stringify(testval));
+    // const testval = await chrome.i18n.getMessage("some.message");
+    // console.log(JSON.stringify(testval));
     const retVal = await fns.getMessage("some.message");
     expect(retVal).to.equal("someval");
-    expect(chrome.i18n.getMessage).to.have.been.calledWithExactly("some.message");
+    expect(chrome.i18n.getMessage).to.have.been.calledWithExactly(
+      "some.message"
+    );
   });
 
   it("showNotification", async () => {
+    sandbox.stub(dataFns, "getDataFromStorage");
     sandbox.stub(fns.factory, "getMessage");
     fns.factory.getMessage.withArgs("extensionName").returns("historyDelete");
     fns.factory.getMessage.withArgs("notify.1").returns("notify1");
+    dataFns.getDataFromStorage.withArgs("enNot").returns(true);
     chrome.notifications.create.yields(true);
 
     await fns.showNotification("notify.1");
@@ -46,6 +51,13 @@ describe("utils.common", function() {
         iconUrl: "/src/assets/icon-32.png"
       }
     );
+
+    dataFns.getDataFromStorage.withArgs("enNot").returns(false);
+    chrome.notifications.create.resetHistory();
+
+    await fns.showNotification("notify.1");
+
+    expect(chrome.notifications.create).to.not.have.been.called;
   });
 
   it("getActiveTab", () => {
@@ -55,15 +67,18 @@ describe("utils.common", function() {
 
   it("openPage", async () => {
     const errorMessage = "Error page type";
-    const tab = { index: 0, name: "tab_1" }, respUrl = "mine.page";
+    const tab = { index: 0, name: "tab_1" };
+    const respUrl = "mine.page";
     const retValue = "true";
 
     chrome.i18n.getMessage.withArgs("error_pageType").returns(errorMessage);
     chrome.tabs.query.yields([tab]);
     expect(fns.openPage()).to.be.rejectedWith(errorMessage);
 
-    //stubs
-    chrome.runtime.getURL.withArgs("/src/settings/settings.html").returns(respUrl);
+    // stubs
+    chrome.runtime.getURL
+      .withArgs("/src/settings/settings.html")
+      .returns(respUrl);
     chrome.tabs.create.yields(retValue);
     const closeSpy = sandbox.spy();
     window.close = closeSpy;

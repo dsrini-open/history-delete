@@ -63,6 +63,10 @@
     "description": "Option text for regular interval blacklist clearing",
     "message": "Habilitar el borrado de la lista negra en la ventana cerrar"
   },
+  "options_action_enNot": {
+    "description": "Option text for enabling notification",
+    "message": "Habilitar la notificación"
+  },
   "options_btn_close": {
     "description": "Close button text",
     "message": "Cancelar"
@@ -117,7 +121,7 @@
   },
   "options_warn_removeEntry": {
     "description": "Warning message to throw to the users",
-    "message": "¿Borrar la entrada del host?"
+    "message": "¿Eliminar la entrada?"
   },
   "options_warn_remove_bl": {
     "description": "Warning message for removing blacklist option",

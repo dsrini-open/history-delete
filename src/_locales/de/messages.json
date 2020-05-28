@@ -63,6 +63,10 @@
     "description": "Option text for regular interval blacklist clearing",
     "message": "Aktivieren Sie Clearing Blacklist beim Schließen des Fensters"
   },
+  "options_action_enNot": {
+    "description": "Option text for enabling notification",
+    "message": "Aktiviere Benachrichtigungen"
+  },
   "options_btn_close": {
     "description": "Close button text",
     "message": "Stornieren"
@@ -117,7 +121,7 @@
   },
   "options_warn_removeEntry": {
     "description": "Warning message to throw to the users",
-    "message": "Hosteintrag löschen?"
+    "message": "Eintrag löschen?"
   },
   "options_warn_remove_bl": {
     "description": "Warning message for removing blacklist option",

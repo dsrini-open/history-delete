@@ -7,6 +7,7 @@ export const create = async (name, cfg) => {
 };
 
 export const clear = async name => {
-  showNotification(`notif_alarm_clear_${name}`);
-  return browser.alarms.clear(name);
+  const cleared = await browser.alarms.clear(name);
+  if (cleared) showNotification(`notif_alarm_clear_${name}`);
+  return cleared;
 };
