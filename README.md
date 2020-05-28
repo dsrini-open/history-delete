@@ -9,11 +9,11 @@
 Browser extension to remove history based on websites. Web-sites could be configured as black-list or white-list and removed with options.
 
 # Browsers
-[Mozilla web-extension] ![Mozilla Add-on](https://img.shields.io/amo/users/delete-history)
+[Mozilla web-extension] ![Mozilla Add-on](https://img.shields.io/amo/users/delete-history) ![Verison](https://img.shields.io/amo/v/delete-history) ![Rating](https://img.shields.io/amo/stars/delete-history)
 
-Opera web-extension (pending, submitted)
+[Opera web-extension]
 
-Chrome web-extension (pending, works)
+Chrome web-extension (pending submision, works)
 
 Any other Browser please submit a PR to go through the add-on process.
 
@@ -37,5 +37,12 @@ Any other Browser please submit a PR to go through the add-on process.
 * 2.1 Version
   1. Fix to run the initial alarm by alarm interval config.
   2. Fix to clear the entire history when no whitelist item present.
+* 2.2 Version
+  1. Version to release opera based changes.
+* 2.3 Version
+  1. Fix to add Option to enable/disable notifications
+  2. Fix to remove notification on clear alarm, if none removed.
+  3. Misc updates and dependencies updated. Mochapack updated to v2.0.0
 
 [Mozilla web-extension]: https://addons.mozilla.org/en-US/firefox/addon/delete-history/
+[Opera web-extension]: https://addons.opera.com/en/extensions/details/delete-history/
